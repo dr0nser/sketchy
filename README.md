@@ -1,5 +1,5 @@
 
-# Sketchy
+![Sketchy Logo](./images/sketchy-logo.png)
 
 This is an assignment from ![The Odin Project](https://www.theodinproject.com/).
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sketchy</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="shortcut icon" href="./images/sketchy-logo.png" type="image/x-png">
+</head>
+<body>
+    <header class="container">
+        <div id="header-logo">
+            <img src="./images/sketchy-logo.png" alt="Sketchy Logo">
+            <h1>Sketchy</h1>
+        </div>
+        <div id="github-link">
+            <a href="#" target="_blank">
+                <img src="./images/github.png" alt="Github Link">
+            </a>
+        </div>
+    </header>
+    <section class="container">
+        <div id="grid-container">
+        </div>
+        <div class="control-panel">
+            <div class="colorpicker-container">
+                <input type="color" id="colorpicker" value="#3D2C8D">
+                <p>Pick a color</p>
+            </div>
+            <button id="onecolor">One Color Mode</button>
+            <button id="randomcolor">Random Color Mode</button>
+            <button id="graycolor">Gray Color Mode</button>
+            <button id="eraser">Eraser</button>
+            <button id="clear">Clear Board</button>
+            <div class="grid-info">
+                <h2 id="grid-value-info">10 x 10</h2>
+                <input id="slider" type="range" min="2" max="64" value="10">
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Made by Souvik ^_^</p>
+    </footer>
+    <script src="./src/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+
+:root {
+    --dark-violet: #3D2C8D;
+    --light-pink: #f0e4f0;
+}
+* {
+    margin: 0;
+    font-family: 'Finger Paint', cursive;
+    color: var(--dark-violet);
+}
+
+/* body */
+body {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(45deg,#fae7e7, #dce2f8, #CDDEFF, #f3ddf8, #FDF6F0);
+}
+
+/* common styles */
+.container {
+    padding: 2vh 8vw;
+}
+button, #slider {
+    width: 14vw;
+    height: 5vh;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid var(--dark-violet);
+    margin: 3vh;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: var(--light-pink);
+}
+button:hover {
+    background-color: thistle;
+}
+
+/* header */
+header {
+    display: flex;
+    justify-content: space-between;
+}
+#header-logo {
+    display: flex;
+    align-items: center;
+}
+#header-logo > img {
+    width: 70px;
+}
+#github-link > a > img {
+    width: 40px;
+}
+
+/* main section - contains the sketching board and controls */
+section {
+    padding-top: 3vh;
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+    align-items: center;
+}
+
+/* left section */
+#grid-container {
+    width: 32vw;
+    aspect-ratio: 1;
+    background-color: white;
+    border-radius: 10px;
+    display: grid;
+}
+
+/* right section */
+.control-panel {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+.colorpicker-container {
+    width: 14vw;
+    display: flex;
+    margin: auto;
+    align-items: center;
+}
+#colorpicker {
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+    margin: 0 1.5vw;
+}
+.grid-info {
+    margin-top: 2vh;
+    text-align: center;
+    color: #3D2C8D;
+}
+#slider {
+    background-color: #dce2f8;
+    outline: none;
+    cursor: pointer;
+    border-radius: 20px;
+    height: 5px;
+    color: #3D2C8D;
+    border: none;
+    box-shadow: inset 0 0 3px var(--dark-violet);
+}
+#slider::-moz-range-thumb {
+    border-radius: 100%;
+    border: 3px solid var(--dark-violet);
+}
+#slider:hover {
+    background-color: thistle;
+}
+
+/* footer */
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    padding-bottom: 2vh;
+}

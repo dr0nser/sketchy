@@ -2,6 +2,7 @@
 
 :root {
     --dark-violet: #3D2C8D;
+    --light-violet: #d3d3d3;
     --light-pink: #f0e4f0;
 }
 * {
@@ -27,10 +28,13 @@ button, #slider {
     border-radius: 10px;
     outline: none;
     border: 1px solid var(--dark-violet);
-    margin: 3vh;
+    margin: 2.5vh;
     cursor: pointer;
     font-size: 1rem;
     background-color: var(--light-pink);
+}
+.button-bg {
+    background-color: thistle;
 }
 button:hover {
     background-color: thistle;
@@ -66,7 +70,6 @@ section {
     width: 32vw;
     aspect-ratio: 1;
     background-color: white;
-    border-radius: 10px;
     display: grid;
 }
 
@@ -84,10 +87,30 @@ section {
     align-items: center;
 }
 #colorpicker {
+    width: 6vh;
+    height: 6vh;
+    appearance: none;
+    background: none;
+    border: none;
     padding: 0;
+    margin: 0;
     outline: none;
     cursor: pointer;
     margin: 0 1.5vw;
+}
+#colorpicker::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+#colorpicker::-webkit-color-swatch {
+   border: none;
+   border-radius: 50%; 
+}
+#colorpicker::-moz-color-swatch-wrapper {
+    padding: 0;
+}
+#colorpicker::-moz-color-swatch {
+   border: none;
+   border-radius: 50%; 
 }
 .grid-info {
     margin-top: 2vh;
@@ -95,21 +118,31 @@ section {
     color: #3D2C8D;
 }
 #slider {
-    background-color: #dce2f8;
+    appearance: none;
+    height: 1vh;
     outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    background-color: thistle;
+}
+#slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background-color: var(--light-violet);
+    border: 4px solid var(--dark-violet);
     cursor: pointer;
-    border-radius: 20px;
-    height: 5px;
-    color: #3D2C8D;
-    border: none;
-    box-shadow: inset 0 0 3px var(--dark-violet);
 }
 #slider::-moz-range-thumb {
-    border-radius: 100%;
-    border: 3px solid var(--dark-violet);
-}
-#slider:hover {
-    background-color: thistle;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background-color: var(--light-violet);
+    border: 4px solid var(--dark-violet);
+    cursor: pointer;
 }
 
 /* footer */

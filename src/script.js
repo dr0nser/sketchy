@@ -21,6 +21,73 @@ let currentColor = colorPicker.value,
     eraseMode = false,
     sliderValue = slider.value;
 
+// button click events
+btn_oneColorMode.onclick = () => {
+    oneColorMode = true;
+
+    eraseMode = false;
+    randomColorMode = false;
+    grayColorMode = false;
+
+    btn_oneColorMode.classList.add("button-bg");
+    btn_randomColorMode.classList.remove("button-bg");
+    btn_grayColorMode.classList.remove("button-bg");
+    btn_eraseMode.classList.remove("button-bg");
+
+    colorGrid();
+}
+btn_randomColorMode.onclick = () => {
+    randomColorMode = true;
+
+    eraseMode = false;
+    oneColorMode = false;
+    grayColorMode = false;
+
+    btn_oneColorMode.classList.remove("button-bg");
+    btn_randomColorMode.classList.add("button-bg");
+    btn_grayColorMode.classList.remove("button-bg");
+    btn_eraseMode.classList.remove("button-bg");
+
+    colorGrid();
+}
+btn_grayColorMode.onclick = () => {
+    grayColorMode = true;
+
+    eraseMode = false;
+    oneColorMode = false;
+    randomColorMode = false;
+
+    btn_oneColorMode.classList.remove("button-bg");
+    btn_randomColorMode.classList.remove("button-bg");
+    btn_grayColorMode.classList.add("button-bg");
+    btn_eraseMode.classList.remove("button-bg");
+    
+    colorGrid();
+}
+btn_eraseMode.onclick = () => {
+    eraseMode = true;
+
+    oneColorMode = false;
+    randomColorMode = false;
+    grayColorMode = false;
+
+    btn_oneColorMode.classList.remove("button-bg");
+    btn_randomColorMode.classList.remove("button-bg");
+    btn_grayColorMode.classList.remove("button-bg");
+    btn_eraseMode.classList.add("button-bg");
+
+    colorGrid();
+}
+btn_clearBoard.onclick = () => {
+    oneColorMode = true;
+
+    eraseMode = false;
+    randomColorMode = false;
+    grayColorMode = false;
+
+    createGrid();
+}
+
 // methods 
 function createGrid() {
     gridContainer.innerHTML = '';
@@ -68,54 +135,7 @@ slider.onchange = (event) => {
 };
 slider.onmousemove = (event) => {
     sliderValue = event.target.value;
-    updateInfo();
-}
-
-// button click events
-btn_oneColorMode.onclick = () => {
-    oneColorMode = true;
-
-    eraseMode = false;
-    randomColorMode = false;
-    grayColorMode = false;
-
-    colorGrid();
-}
-btn_randomColorMode.onclick = () => {
-    randomColorMode = true;
-
-    eraseMode = false;
-    oneColorMode = false;
-    grayColorMode = false;
-
-    colorGrid();
-}
-btn_grayColorMode.onclick = () => {
-    grayColorMode = true;
-
-    eraseMode = false;
-    oneColorMode = false;
-    randomColorMode = false;
-    
-    colorGrid();
-}
-btn_eraseMode.onclick = () => {
-    eraseMode = true;
-
-    oneColorMode = false;
-    randomColorMode = false;
-    grayColorMode = false;
-
-    colorGrid();
-}
-btn_clearBoard.onclick = () => {
-    oneColorMode = true;
-
-    eraseMode = false;
-    randomColorMode = false;
-    grayColorMode = false;
-
-    createGrid();
+    updateGridInfo();
 }
 
 // pick color

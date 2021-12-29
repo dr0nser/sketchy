@@ -79,12 +79,6 @@ btn_eraseMode.onclick = () => {
     colorGrid();
 }
 btn_clearBoard.onclick = () => {
-    oneColorMode = true;
-
-    eraseMode = false;
-    randomColorMode = false;
-    grayColorMode = false;
-
     createGrid();
 }
 
@@ -97,12 +91,6 @@ function createGrid() {
         div.classList.add("grid-item");
         gridContainer.appendChild(div);
     }
-
-    btn_oneColorMode.classList.add("button-bg");
-    btn_randomColorMode.classList.remove("button-bg");
-    btn_grayColorMode.classList.remove("button-bg");
-    btn_eraseMode.classList.remove("button-bg");
-
     updateGridInfo();
     colorGrid();
 }

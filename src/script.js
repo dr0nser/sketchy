@@ -97,6 +97,12 @@ function createGrid() {
         div.classList.add("grid-item");
         gridContainer.appendChild(div);
     }
+
+    btn_oneColorMode.classList.add("button-bg");
+    btn_randomColorMode.classList.remove("button-bg");
+    btn_grayColorMode.classList.remove("button-bg");
+    btn_eraseMode.classList.remove("button-bg");
+
     updateGridInfo();
     colorGrid();
 }

@@ -4,6 +4,7 @@
     --dark-violet: #3D2C8D;
     --light-violet: #d3d3d3;
     --light-pink: #f0e4f0;
+    --grid-border: #E8E8E8;
 }
 * {
     margin: 0;
@@ -20,7 +21,7 @@ body {
 
 /* common styles */
 .container {
-    padding: 2vh 8vw;
+    padding: 1vh 8vw;
 }
 button, #slider {
     width: 14vw;
@@ -58,7 +59,7 @@ header {
 
 /* main section - contains the sketching board and controls */
 section {
-    padding-top: 3vh;
+    padding-top: 1vh;
     display: flex;
     justify-content: space-around;
     margin: auto;
@@ -71,6 +72,9 @@ section {
     aspect-ratio: 1;
     background-color: white;
     display: grid;
+}
+.border-gray {
+    border: 1px solid var(--grid-border);
 }
 
 /* right section */

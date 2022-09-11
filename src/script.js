@@ -1,9 +1,15 @@
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+
 // button
 const btn_oneColorMode = document.getElementById("onecolor");
 const btn_randomColorMode = document.getElementById("randomcolor");
 const btn_grayColorMode = document.getElementById("graycolor");
 const btn_eraseMode = document.getElementById("eraser");
 const btn_clearBoard = document.getElementById("clear");
+const btn_showgrid = document.getElementById("showgrid");
+const btn_download = document.getElementById("download");
 
 // interactive elements
 const colorPicker = document.getElementById("colorpicker");
@@ -33,8 +39,6 @@ btn_oneColorMode.onclick = () => {
     btn_randomColorMode.classList.remove("button-bg");
     btn_grayColorMode.classList.remove("button-bg");
     btn_eraseMode.classList.remove("button-bg");
-
-    colorGrid();
 }
 btn_randomColorMode.onclick = () => {
     randomColorMode = true;
@@ -47,8 +51,6 @@ btn_randomColorMode.onclick = () => {
     btn_randomColorMode.classList.add("button-bg");
     btn_grayColorMode.classList.remove("button-bg");
     btn_eraseMode.classList.remove("button-bg");
-
-    colorGrid();
 }
 btn_grayColorMode.onclick = () => {
     grayColorMode = true;
@@ -61,8 +63,6 @@ btn_grayColorMode.onclick = () => {
     btn_randomColorMode.classList.remove("button-bg");
     btn_grayColorMode.classList.add("button-bg");
     btn_eraseMode.classList.remove("button-bg");
-    
-    colorGrid();
 }
 btn_eraseMode.onclick = () => {
     eraseMode = true;
@@ -75,8 +75,32 @@ btn_eraseMode.onclick = () => {
     btn_randomColorMode.classList.remove("button-bg");
     btn_grayColorMode.classList.remove("button-bg");
     btn_eraseMode.classList.add("button-bg");
-
-    colorGrid();
+}
+let showGrid = false;
+btn_showgrid.onclick = () => {
+    showGrid = !showGrid;
+    let gridItems = gridContainer.getElementsByTagName('div');
+    if (showGrid) {
+        for (let i = 0; i < sliderValue * sliderValue; i++) {
+            var gridItem = gridItems[i];
+            gridItem.classList.add('border-gray');
+        }
+    } else {
+        for (let i = 0; i < sliderValue * sliderValue; i++) {
+            var gridItem = gridItems[i];
+            gridItem.classList.remove('border-gray');
+        }
+    }
+}
+btn_download.onclick = () => {
+    domtoimage.toJpeg(gridContainer)
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'sketchy.jpeg';
+        link.href = dataUrl;
+        link.click();
+        link.remove();
+    });
 }
 btn_clearBoard.onclick = () => {
     createGrid();
@@ -85,41 +109,41 @@ btn_clearBoard.onclick = () => {
 // methods 
 function createGrid() {
     gridContainer.innerHTML = '';
+    gridContainer.style.gridTemplateRows = `repeat(${sliderValue}, 1fr)`;
     gridContainer.style.gridTemplateColumns = `repeat(${sliderValue}, 1fr)`;
     for (let i = 1; i <= sliderValue * sliderValue; i++) {
         const div = document.createElement("div");
-        div.classList.add("grid-item");
+        div.addEventListener('mouseover', changeColor);
+        div.addEventListener('mousedown', changeColor);
         gridContainer.appendChild(div);
     }
     updateGridInfo();
-    colorGrid();
 }
 function updateGridInfo() {
     gridValueInfo.innerHTML = `${sliderValue} x ${sliderValue}`;
 }
-function colorGrid() {
-    const gridItems = gridContainer.querySelectorAll(".grid-item");
-    gridItems.forEach(item => item.onmouseover = () => {
-        if (eraseMode) {
-            item.style.background = "white";
-        } else if (oneColorMode) {
-            item.style.background = currentColor;
-        } else if (randomColorMode) {
-            let randomHexCode = Math.floor(Math.random()*16777215).toString(16);
-            item.style.background = '#' + randomHexCode;
-        } else if (grayColorMode) {
-            let rgbaValuesArray = getComputedStyle(item).getPropertyValue("background-color").match(/[\d.]+/g);
-            if (rgbaValuesArray[0] != 0 || rgbaValuesArray[1] != 0 || rgbaValuesArray[2] != 0) {
-                item.style.background = `rgba(0, 0, 0, 0.1)`
-            } else {
-                let alphaValueOfItem = parseFloat(rgbaValuesArray[3]) + 0.1;
-                if (alphaValueOfItem > 1) {
-                    alphaValueOfItem = 0;
-                }
-                item.style.background = `rgba(0, 0, 0, ${alphaValueOfItem})`;
+
+function changeColor(e) {
+    if (e.type === 'mouseover' && !mouseDown) return;
+    if (eraseMode) {
+        e.target.style.background = "white";
+    } else if (oneColorMode) {
+        e.target.style.background = currentColor;
+    } else if (randomColorMode) {
+        let randomHexCode = Math.floor(Math.random()*16777215).toString(16);
+        e.target.style.background = '#' + randomHexCode;
+    } else if (grayColorMode) {
+        let rgbaValuesArray = getComputedStyle(e.target).getPropertyValue("background-color").match(/[\d.]+/g);
+        if (rgbaValuesArray[0] != 0 || rgbaValuesArray[1] != 0 || rgbaValuesArray[2] != 0) {
+            e.target.style.background = `rgba(0, 0, 0, 0.1)`
+        } else {
+            let alphaValueOfItem = parseFloat(rgbaValuesArray[3]) + 0.1;
+            if (alphaValueOfItem > 1) {
+                alphaValueOfItem = 0;
             }
+            e.target.style.background = `rgba(0, 0, 0, ${alphaValueOfItem})`;
         }
-    });
+    }
 }
 
 // slider events

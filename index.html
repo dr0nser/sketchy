@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sketchy</title>
-    <link rel="stylesheet" href="./css/styles.css">
     <link rel="shortcut icon" href="./images/sketchy-pen-logo.png" type="image/x-png">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <header class="container">
@@ -33,15 +33,18 @@
             <button id="graycolor">Gray Color Mode</button>
             <button id="eraser">Eraser</button>
             <button id="clear">Clear Board</button>
+            <button id="showgrid">Toggle Grid</button>
+            <button id="download">Download Image</button>
             <div class="grid-info">
-                <h2 id="grid-value-info">10 x 10</h2>
-                <input id="slider" type="range" min="2" max="64" value="10">
+                <h2 id="grid-value-info">20 x 20</h2>
+                <input id="slider" type="range" min="2" max="64" value="20">
             </div>
         </div>
     </section>
     <footer>
         <p>Made by Souvik ^_^</p>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <script src="./src/script.js"></script>
 </body>
 </html>

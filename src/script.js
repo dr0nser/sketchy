@@ -1,8 +1,9 @@
-let mouseDown = false
+let mouseDown = false;
+let showGrid = false;
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 
-// button
+// buttons
 const btn_oneColorMode = document.getElementById("onecolor");
 const btn_randomColorMode = document.getElementById("randomcolor");
 const btn_grayColorMode = document.getElementById("graycolor");
@@ -76,21 +77,9 @@ btn_eraseMode.onclick = () => {
     btn_grayColorMode.classList.remove("button-bg");
     btn_eraseMode.classList.add("button-bg");
 }
-let showGrid = false;
 btn_showgrid.onclick = () => {
     showGrid = !showGrid;
-    let gridItems = gridContainer.getElementsByTagName('div');
-    if (showGrid) {
-        for (let i = 0; i < sliderValue * sliderValue; i++) {
-            var gridItem = gridItems[i];
-            gridItem.classList.add('border-gray');
-        }
-    } else {
-        for (let i = 0; i < sliderValue * sliderValue; i++) {
-            var gridItem = gridItems[i];
-            gridItem.classList.remove('border-gray');
-        }
-    }
+    toggleGridLines();
 }
 btn_download.onclick = () => {
     domtoimage.toJpeg(gridContainer)
@@ -118,6 +107,22 @@ function createGrid() {
         gridContainer.appendChild(div);
     }
     updateGridInfo();
+    if (showGrid) 
+        toggleGridLines();
+}
+function toggleGridLines() {
+    let gridItems = gridContainer.getElementsByTagName('div');
+    if (showGrid) {
+        for (let i = 0; i < sliderValue * sliderValue; i++) {
+            var gridItem = gridItems[i];
+            gridItem.classList.add('border-gray');
+        }
+    } else {
+        for (let i = 0; i < sliderValue * sliderValue; i++) {
+            var gridItem = gridItems[i];
+            gridItem.classList.remove('border-gray');
+        }
+    }
 }
 function updateGridInfo() {
     gridValueInfo.innerHTML = `${sliderValue} x ${sliderValue}`;
